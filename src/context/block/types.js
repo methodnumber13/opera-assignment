@@ -1,0 +1,3 @@
+export const BLOCK_PENDING = 'BLOCK_PENDING';
+export const BLOCK_ERROR = 'BLOCK_ERROR';
+export const BLOCK_SUCCESS = 'BLOCK_SUCCESS';
