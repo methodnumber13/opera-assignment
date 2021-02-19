@@ -1,0 +1,50 @@
+.pagination_btn {
+    cursor: pointer;
+    color: black;
+    border-radius: 0.4em;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: white;
+    text-decoration: none;
+    &:hover{
+        border: 2px solid rgba(3, 3, 3, 0.76);
+    }
+}  
+
+.arrow_btn {
+    border-radius: 0.4em;
+    &:hover{
+        border: 2px solid rgba(3, 3, 3, 0.76);
+    }
+}
+
+.page_active_btn {
+    border: 2px solid rgba(12, 10, 10, 0.658);
+}
+
+.pagination_main {
+    --button-cursor: pointer;
+    margin: 1em 0 0 0 ;
+    cursor: var(--button-cursor);
+    display: flex;
+    flex-direction: row;
+}
+
+.main_disabled {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.pagination_size_s {
+    height: 2em;
+    width: 2em;
+}
+
+.pagination_size_m {
+    height: 2.5em;
+    width: 2.5em;
+}
+
+.pagination_size_l {
+    height: 3em;
+    width: 3em;
+}
