@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, memo } from 'react';
 import styled from '@emotion/styled';
 
 import { Table, BlockSearcher } from '../../components';
@@ -28,12 +28,13 @@ const InfoBlock = ({ hash, transactions }) => (
   </>
 );
 
-export const Info = () => {
+export const Info = memo(() => {
   const { BlockContext } = BlockState;
   const { getBlock, transactions, hash, number } = useContext(BlockContext);
 
   const [inputValue, setInputValue] = useState(0);
   const [isNoData, setIsNoData] = useState(false);
+  const [isErrorMsg, setErrorMsg] = useState(false);
 
   useEffect(() => {
     let res = number;
@@ -45,17 +46,22 @@ export const Info = () => {
 
   const onValidate = value => {
     if (isNumber(value)) {
-      setInputValue(value);
-      getBlock(value);
+      if (hexUtils.hexToDec(number) !== value) getBlock(value);
+      else setErrorMsg(true);
     }
   };
 
   return (
     inputValue && (
       <Wrapper>
-        <BlockSearcher blockNumber={inputValue} onSearch={onValidate} onChange={setInputValue} />
+        <BlockSearcher
+          blockNumber={inputValue}
+          isErrorMsg={isErrorMsg}
+          onSearch={onValidate}
+          onChange={setInputValue}
+        />
         {!isNoData ? <InfoBlock hash={hash} transactions={transactions} /> : <ErrorInfo text="no data" />}
       </Wrapper>
     )
   );
-};
+});

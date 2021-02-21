@@ -72,7 +72,7 @@ export default `
 
   tbody {
     tr {
-      &:nth-of-type(odd) {
+      &:hover {
         td {
           background-color: ${colors.gray.dark};
         }

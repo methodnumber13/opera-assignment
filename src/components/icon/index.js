@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import styled from '@emotion/styled';
 import { jc } from '../../utils';
-// import './icon.scss';
 
 const IconView = styled.span`
   --icon-size: 100%;
@@ -28,9 +27,12 @@ const sizes = {
   l: '32px',
 };
 
-export const Icon = ({ children, className = '', iconSize, style }) => {
-  //   const classNames = useMemo(() => jc('icon', className), [className]);
-  const styles = { ['--icon-size']: sizes[iconSize], ...style };
+export const Icon = ({ children, className = '', iconSize, iconColor, style }) => {
+  const styles = {
+    ['--icon-size']: sizes[iconSize],
+    ['--icon-color']: iconColor ?? 'currentColor',
+    ...style,
+  };
 
   return (
     <IconView className={className} role="presentation" style={styles}>

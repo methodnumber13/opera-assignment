@@ -4,7 +4,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WebpackBar = require('webpackbar');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
+// has vulnerability at this moment
+// const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
@@ -46,7 +47,7 @@ module.exports = env => {
           minifyURLs: true,
         },
       }),
-      new WatchMissingNodeModulesPlugin(path.resolve('node_modules')),
+      //   new WatchMissingNodeModulesPlugin(path.resolve('node_modules')),
       new CaseSensitivePathsPlugin(),
       new DuplicatePackageCheckerPlugin(),
       new CircularDependencyPlugin({ include: /src/, failOnError: true }),

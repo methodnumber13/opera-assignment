@@ -7,7 +7,7 @@ const StyledLayoutMain = styled.main`
   justify-content: center;
   align-items: center;
   background-color: #faf7f7;
-  height: 50em;
+  height: 65em;
 `;
 
 export const LayoutMain = ({ children, className }) => (
