@@ -6,3 +6,5 @@ export const hexToDec = (hex = '') => {
 export const decToHex = (dec = '') => {
   return dec.toString(16);
 };
+
+export const isHex = str => Boolean(str.toString().match(/^0x[0-9a-f]+$/i));

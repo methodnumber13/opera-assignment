@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 
 import { ArrowButton } from '../components/buttons';
 import { CustomInput } from '../components/input';
-import { hexUtils, isNumber } from '../utils/index';
+import { isNumber } from '../utils/index';
 
 export const SearcherWrapper = styled.div`
   display: inline-flex;
@@ -21,7 +21,7 @@ export const BlockSearcher = ({ blockNumber, onSearch, onChange }) => {
   return (
     <SearcherWrapper>
       <CustomInput
-        key={`custom-input-${blockNumber}`}
+        key="custom-input"
         type="text"
         labelText="Number"
         name="blockNumber"

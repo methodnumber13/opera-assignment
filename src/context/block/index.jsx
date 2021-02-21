@@ -15,7 +15,10 @@ const BlockProvider = ({ children }) => {
       const response = await fetch(`${API_URL}/${block}`);
       if (response.status === 200) {
         let data = await response.json();
-        dispatch({ type: BLOCK_SUCCESS, payload: data?.result });
+        dispatch({
+          type: BLOCK_SUCCESS,
+          payload: !data?.result ? { number: block, hash: '', transactions: [] } : data.result,
+        });
       }
     } catch (err) {
       dispatch({ type: BLOCK_ERROR, payload: { isError: true } });
