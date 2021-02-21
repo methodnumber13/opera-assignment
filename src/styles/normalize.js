@@ -74,10 +74,10 @@ export default `
     tr {
       &:nth-of-type(odd) {
         td {
-          background-color: ${colors.gray.light};
+          background-color: ${colors.gray.dark};
         }
         tr {
-          background-color: ${colors.gray.light};
+          background-color: ${colors.gray.dark};
         }
       }
     }
