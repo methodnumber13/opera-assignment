@@ -28,7 +28,9 @@ const Tr = ({ data, index, show, setModal }) => {
   const { from, to, hash, ...rest } = data;
 
   return (
-    <tr onClick={() => setModal({ show: !show, body: () => AdditionalInfo(rest) })}>
+    <tr
+      style={{ cursor: 'pointer' }}
+      onClick={() => setModal({ show: !show, body: () => AdditionalInfo(rest) })}>
       {[from, to, hash].map((value, i) => (
         <BodyCell key={`table-td${index + i}`}>{value}</BodyCell>
       ))}

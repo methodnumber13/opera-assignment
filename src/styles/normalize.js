@@ -20,7 +20,7 @@ export default `
   body {
     width: 100%;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: hidden;
     font-family: ${fonts.sansSerif};
     color: ${colors.black};
     background-color: ${colors.white};
@@ -55,7 +55,7 @@ export default `
   table {
     width: 100%;
     margin-bottom: 1rem;
-    border: 1px solid ${colors.ui.light};
+    border: 2px solid ${colors.ui.dark};
     font-size: 85%;
     border-collapse: collapse;
   }
@@ -74,10 +74,10 @@ export default `
     tr {
       &:nth-of-type(odd) {
         td {
-          background-color: ${colors.gray.dark};
+          background-color: ${colors.gray.light};
         }
         tr {
-          background-color: ${colors.gray.dark};
+          background-color: ${colors.gray.light};
         }
       }
     }
@@ -119,7 +119,7 @@ export default `
   }
 
   ul,
-  ol,
+  ol,hidden
   dl {
     margin-top: 0;
     margin-bottom: 1rem;

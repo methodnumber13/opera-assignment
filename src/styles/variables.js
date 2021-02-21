@@ -13,6 +13,7 @@ export const colors = {
   },
   code: '#fcf6f0',
   gray: {
+    light: 'hsl(0deg 2% 28% / 88%)',
     dark: 'hsla(270, 17.119554496%, 0%, 0.92)',
     copy: 'hsla(270, 15.797828016000002%, 0%, 0.88)',
     calm: 'rgba(0, 0, 0, 0.54)',
