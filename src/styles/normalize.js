@@ -20,7 +20,7 @@ export default `
   body {
     width: 100%;
     overflow-x: hidden;
-    overflow-y: hidden;
+    overflow-y: auto;
     font-family: ${fonts.sansSerif};
     color: ${colors.black};
     background-color: ${colors.white};

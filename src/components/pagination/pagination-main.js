@@ -1,22 +1,35 @@
 import React from 'react';
 import { PageList } from './page-list';
-import { jc } from '../../utils';
-import './pagination.scss';
+import { css, cx } from '@emotion/css';
+
+const paginationMain = css`
+  --button-cursor: pointer;
+  margin: 1em 0 0 0;
+  cursor: var(--button-cursor);
+  display: flex;
+  flex-direction: row;
+`;
+
+const mainDisabled = css`
+  pointer-events: none;
+  opacity: 0.4;
+`;
 
 export const PaginationMain = ({ pageSize, curPage, count, style = {}, disabled = false, setCount }) => {
   const isDisabled = name => (disabled ? name : '');
 
   const getCustomStyles = () => {
+    debugger;
     const styles = {
-      ['--button-cursor']: curPage?.number === 1 || curPage?.number === count ? 'not-allowed' : 'pointer',
+      ['--button-cursor']: !count || curPage?.number === count ? 'not-allowed' : 'pointer',
       ...style,
     };
     return styles;
   };
 
   return (
-    <div className={jc('pagination_main', isDisabled('main_disabled'))} style={getCustomStyles()}>
-      <PageList pageSize={pageSize} curPage={curPage} count={count} setCount={setCount} />
+    <div className={cx(paginationMain, isDisabled(mainDisabled))} style={getCustomStyles()}>
+      <PageList pageSize={pageSize} count={count} setCount={setCount} />
     </div>
   );
 };

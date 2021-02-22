@@ -28,7 +28,7 @@ const InfoBlock = ({ hash, transactions }) => (
   </>
 );
 
-export const Info = memo(() => {
+export const Info = () => {
   const { BlockContext } = BlockState;
   const { getBlock, transactions, hash, number } = useContext(BlockContext);
 
@@ -46,8 +46,10 @@ export const Info = memo(() => {
 
   const onValidate = value => {
     if (isNumber(value)) {
-      if (hexUtils.hexToDec(number) !== value) getBlock(value);
-      else setErrorMsg(true);
+      if (hexUtils.hexToDec(number) !== value) {
+        setInputValue(value);
+        getBlock(value);
+      } else setErrorMsg(true);
     }
   };
 
@@ -64,4 +66,4 @@ export const Info = memo(() => {
       </Wrapper>
     )
   );
-});
+};

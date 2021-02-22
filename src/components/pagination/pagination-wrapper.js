@@ -1,14 +1,24 @@
 import React from 'react';
-import { jc } from '../../utils';
-import './index.scss';
+import { css, cx } from '@emotion/css';
 
-const isDisabled = disabled => (disabled ? `disabled` : '');
+const styles = css`
+  --pagination-position: flex-end;
+  display: flex;
+  justify-content: var(--pagination-position);
+  flex-direction: row;
+`;
+
+const disabledArrow = css`
+  cursor: not-allowed;
+`;
+
+const isDisabled = disabled => (disabled ? disabledArrow : '');
 
 export const PaginationWrapper = props => {
   const { children, disabled = false, style = {}, className = '' } = props;
 
   return (
-    <div style={{ ...style }} className={jc('pagination_wrapper', isDisabled(disabled), className)}>
+    <div style={{ ...style }} className={cx(styles, isDisabled(disabled), className)}>
       {children}
     </div>
   );

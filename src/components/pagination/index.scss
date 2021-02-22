@@ -1,9 +1,0 @@
-.pagination_wrapper {
-  --pagination-position: flex-end;
-  display: flex;
-  justify-content: var(--pagination-position);
-  flex-direction: row;
-}
-.disabled {
-  cursor: not-allowed;
-}
