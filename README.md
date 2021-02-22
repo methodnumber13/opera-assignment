@@ -34,6 +34,9 @@ Node.js (version 12.6.0 or higher) - [Download & Install Node.js](https://nodejs
   
 `npm i`
 
+_befor this step make sure yoh have running backend server from here_ 
+`https://github.com/methodnumber13/opera-assigment-backend/`
+
 * Start application:
 
 `npm run start`
