@@ -34,7 +34,7 @@ const StyledLabel = styled.label`
   justify-content: flex-start;
   margin-bottom: 0.5rem;
   align-items: center;
-  gap: 20px;
+  gap: 50px;
 `;
 
 const Wrapper = styled.div`
@@ -63,11 +63,19 @@ const StyledSearch = styled(Button)`
 // стилизованный инпут и лейбл
 export const CustomInput = props => {
   const { labelText, searchText, onSearch, ...inputProps } = props;
+
+  const onEnterKeyUp = e => {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      onSearch(e.target.value);
+    }
+  };
+
   return (
     <Wrapper>
       <StyledLabel>
         {labelText}
-        <StyledInput {...inputProps} />
+        <StyledInput {...inputProps} onKeyUp={onEnterKeyUp} />
       </StyledLabel>
       <StyledSearch onClick={() => onSearch(inputProps.value)}>{searchText}</StyledSearch>
     </Wrapper>

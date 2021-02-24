@@ -2,7 +2,6 @@ import React, { useReducer } from 'react';
 import { initialState, BlockContext } from './context';
 import reducer from './reducer';
 import { BLOCK_PENDING, BLOCK_ERROR, BLOCK_SUCCESS } from './types';
-import { hexUtils } from '../../utils';
 
 const API_URL = process.env.API_URL;
 
@@ -15,9 +14,22 @@ const BlockProvider = ({ children }) => {
       const response = await fetch(`${API_URL}/${block}`);
       if (response.status === 200) {
         let data = await response.json();
+
+        if (data?.error) {
+          dispatch({ type: BLOCK_ERROR, payload: { isError: true } });
+        } else if (!data.result) {
+          dispatch({
+            type: BLOCK_SUCCESS,
+            payload: {
+              number: '',
+              hash: '',
+              transactions: [],
+            },
+          });
+        }
         dispatch({
           type: BLOCK_SUCCESS,
-          payload: !data?.result ? { number: block, hash: '', transactions: [] } : data.result,
+          payload: data.result,
         });
       }
     } catch (err) {

@@ -7,7 +7,7 @@ import { BlockState } from '../../context';
 
 const Home = () => {
   const { BlockContext } = BlockState;
-  const { getBlock, isError, isLoading } = useContext(BlockContext);
+  const { getBlock, isError } = useContext(BlockContext);
 
   if (isError) return <ErrorInfo text="something went wrong..." />;
 
@@ -15,7 +15,7 @@ const Home = () => {
     getBlock('latest');
   }, []);
 
-  return isLoading ? <Spinner /> : <Info />;
+  return <Info />;
 };
 
 export default Home;

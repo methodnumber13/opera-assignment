@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect, useCallback } from 'react';
 import styled from '@emotion/styled';
 
 import { ArrowButton } from '../components/buttons';
 import { CustomInput } from '../components/input';
 import { WithError } from './with-error';
-import { isNumber } from '../utils/index';
+import { BlockState } from '../context';
+import { isNumber } from '../utils';
 
 export const SearcherWrapper = styled.div`
   display: inline-flex;
@@ -13,27 +14,48 @@ export const SearcherWrapper = styled.div`
   margin-top: 1em;
 `;
 
-export const BlockSearcher = ({ blockNumber, onSearch, onChange, isErrorMsg }) => {
+const ONLY_NUMBERS = 'only numbers are allowed';
+
+export const BlockSearcher = () => {
+  const { BlockContext } = BlockState;
+  const { getBlock } = useContext(BlockContext);
+
+  const [inputValue, setInputValue] = useState('');
+  const [isErrorMsg, setErrorMsg] = useState({ isVisible: false, message: '' });
+
   const handleChange = e => {
-    let value = +e.target.value;
-    if (isNumber(value)) onChange(value);
+    let num = +e.target.value;
+
+    if (isNumber(num)) {
+      setInputValue(num);
+    } else {
+      setErrorMsg({ isVisible: true, message: ONLY_NUMBERS });
+    }
   };
+
+  const onSearch = value => {
+    if (isNumber(+value)) {
+      setInputValue(+value);
+      getBlock(+value);
+    }
+  };
+
   return (
-    <WithError isVisible={isErrorMsg} message="the values are equal!">
+    <WithError {...isErrorMsg} type="error">
       <SearcherWrapper>
         <CustomInput
           key="custom-input"
           type="text"
-          labelText="Number"
+          labelText="Block"
           name="blockNumber"
           placeholder="tap number"
-          value={blockNumber}
+          value={inputValue}
           onChange={handleChange}
           searchText={'find'}
           onSearch={onSearch}
         />
-        <ArrowButton onClick={() => onSearch(blockNumber - 1)} iconSize={'m'} direction="left" />
-        <ArrowButton onClick={() => onSearch(blockNumber + 1)} iconSize={'m'} direction="right" />
+        <ArrowButton onClick={() => onSearch(inputValue - 1)} iconSize={'m'} direction="left" />
+        <ArrowButton onClick={() => onSearch(inputValue + 1)} iconSize={'m'} direction="right" />
       </SearcherWrapper>
     </WithError>
   );

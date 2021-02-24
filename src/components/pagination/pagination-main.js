@@ -19,7 +19,6 @@ export const PaginationMain = ({ pageSize, curPage, count, style = {}, disabled 
   const isDisabled = name => (disabled ? name : '');
 
   const getCustomStyles = () => {
-    debugger;
     const styles = {
       ['--button-cursor']: !count || curPage?.number === count ? 'not-allowed' : 'pointer',
       ...style,
